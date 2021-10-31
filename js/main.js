@@ -99,6 +99,7 @@ $(document).ready(function() {
 
     $.scrollIt({
         topOffset: -50,
+        scrollTime: 60,
     });
 
     $('.nav-link').on('click', function(){
