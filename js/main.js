@@ -1,3 +1,6 @@
+$(window).on('load', function() {
+    $('.preloader').fadeOut('slow');
+});
 
 $(document).ready(function() {
 
@@ -25,7 +28,7 @@ $(document).ready(function() {
     $('.features-carousel').owlCarousel({
         loop:true,
         margin:0,
-        // autoplay: true,
+        autoplay: true,
         responsiveClass:true,
         responsive:{
             0:{
@@ -43,7 +46,7 @@ $(document).ready(function() {
     $('.screenshots-carousel').owlCarousel({
         loop:true,
         margin:0,
-        // autoplay: true,
+        autoplay: true,
         responsiveClass:true,
         responsive:{
             0:{
@@ -61,7 +64,7 @@ $(document).ready(function() {
     $('.testimonials-carousel').owlCarousel({
         loop:true,
         margin:0,
-        // autoplay: true,
+        autoplay: true,
         responsiveClass:true,
         responsive:{
             0:{
@@ -79,7 +82,7 @@ $(document).ready(function() {
     $('.team-carousel').owlCarousel({
         loop:true,
         margin:0,
-        // autoplay: true,
+        autoplay: true,
         responsiveClass:true,
         responsive:{
             0:{
@@ -94,4 +97,43 @@ $(document).ready(function() {
         }
     });
 
+    $.scrollIt({
+        topOffset: -50,
+    });
+
+    $('.nav-link').on('click', function(){
+        $('.navbar-collapse').collapse('hide');
+    });
+
+    function toggleTheme(){
+        if (localStorage.getItem('toggle-theme') !== null) {
+            if (localStorage.getItem('toggle-theme') === 'dark') {
+                $('body').addClass('dark');
+            } else {
+                $('body').removeClass('dark');
+            }
+        }
+        updateIcon();
+    };
+    toggleTheme();
+
+    $('.toggle-theme').on('click', function(){
+        $('body').toggleClass('dark');
+        if ($('body').hasClass('dark')) {
+            localStorage.setItem('toggle-theme', 'dark');
+        } else {
+            localStorage.setItem('toggle-theme', 'light');
+        };
+        updateIcon();
+    });
+
+    function updateIcon(){
+        if ($('body').hasClass('dark')){
+            $('.toggle-theme i').removeClass('fa-moon');
+            $('.toggle-theme i').addClass('fa-sun');
+        } else {
+            $('.toggle-theme i').removeClass('fa-sun');
+            $('.toggle-theme i').addClass('fa-moon');
+        };
+    };
 })

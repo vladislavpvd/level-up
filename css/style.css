@@ -27,6 +27,18 @@ body {
     line-height: 1.5;
 }
 
+body.dark {
+    background-color: var(--bg-dark);
+    --black-100: var(--bg-dark);
+    --black-000: var(--bg-dark);
+    --main-to-dark-color: var(--bg-dark);
+    --dark-to-main-color: var(--main-color);
+    --shadow-black-100: var(--shadow-black-300);
+    --black-alpha-100: rgba(255,255,255,0.05);
+    --black-900: #fff;
+    --black-400: #bbb;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -124,6 +136,17 @@ a {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
 }
+
+@keyframes zoomInOut_01 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
 .effect-wrap .effect {
     position: absolute;
     z-index: -1;
@@ -193,6 +216,30 @@ a {
     background-color: var(--main-color);
 }
 
+/* preloader */
+
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2000;
+    background-color: var(--main-to-dark-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader span {
+    display: block;
+    height: 60px;
+    width: 60px;
+    background-color: var(--dark-to-main-color);
+    border-radius: 50%;
+    animation: zoomInOut_01 1s ease infinite;
+}
+
 /* header */
 
 .navbar {
@@ -249,6 +296,7 @@ a {
 }
 
 /* home */
+
 .home {
     min-height: 100vh;
     padding: 150px 0;
@@ -256,6 +304,7 @@ a {
     border-radius: 0 0 200px 0;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
 }
 
 .home-text h1 {
@@ -1058,4 +1107,112 @@ a {
     font-weight: 300;
     margin: 50px 0 0;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* toogle theme */
+
+.toggle-theme {
+    position: fixed;
+    right: 20px;
+    top: calc(50% - 20px);
+    height: 40px;
+    width: 40px;
+    background-color: var(--dark-to-main-color);
+    z-index: 1000;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: var(--shadow-black-300);
+}
+
+.toggle-theme i {
+    line-height: 40px;
+}
+
+/* responsive */
+
+@media(max-width: 991px) {
+    .navbar-toggler {
+        background-color: var(--dark-to-main-color);
+        box-shadow: var(--shadow-black-300);
+        height: 34px;
+        width: 44px;
+        padding: 0;
+        font-size: 16px;
+        color: #fff;
+    }
+    .navbar-nav {
+        background-color: var(--dark-to-main-color);
+        box-shadow: var(--shadow-black-300);
+    }
+    .navbar .nav-item {
+        margin: 0;
+        padding: 5px 15px;
+    }
+    .navbar.navbar-shrink .navbar-toggler,
+    .navbar.navbar-shrink .navbar-nav {
+        background-color: var(--main-color);
+    }
+    .home-img .circle {
+        height: 320px;
+        width: 320px;
+    }
+    .home-img .circle::before {
+        left: 18px;
+        top: 18px;
+        transform-origin: 142px 142px;
+    }
+    .home-text h1 {
+        font-size: 40px;
+    }
+    .pricing-plan,
+    .how-it-works-item,
+    .app-download-item {
+        margin-bottom: 30px;
+    }
+    .how-it-works-item.line-right::before {
+        content: none;
+    }
+    .how-it-works-item {
+        box-shadow: var(--shadow-black-100);
+        border-radius: 10px;
+    }
+    .footer-col {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 768px) {
+    .home-text {
+        margin-bottom: 80px;
+    }
+    .fun-facts-img {
+        margin-bottom: 30px;
+    }
+    .contact-form {
+        margin-top: 20px;
+    }
+    .footer-col {
+        margin-bottom: 30px;
+    }
+    .section-title h2 {
+        font-size: 35px;
+    }
+    .fun-facts .section-title h2 {
+        text-align: center;
+    }
+}
+
+@media(max-width: 575px) {
+    .home-text {
+        font-size: 30px;
+    }
+    .home-text p {
+        font-size: 16px;
+    }
+    .section-title h2 {
+        font-size: 30px;
+    }
 }
